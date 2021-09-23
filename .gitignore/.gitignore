@@ -1,0 +1,88 @@
+class Sorting:
+    def __init__(self, arr):
+        self.arr = arr
+        n = len(arr)
+
+    def bubblesort(self):
+        if n == 0:
+            return self.arr
+        else :
+            for i in range(1 ,n+1):
+                issorted = True
+                for j in range(0 , n-i):
+                    if self.arr[j] > self.arr[j+1]:
+                        self.arr[j] , self.arr[j+1] = self.arr[j+1], self.arr[j]
+                        issorted = False
+
+                if issorted:
+                    print(f'pass no. : {i}')
+                    return self.arr
+
+    def quicksort(self, arr = None):
+        if arr is None:
+            arr = self.arr
+
+        if len(arr) <= 1:
+            return arr
+
+        else:
+            pivot = arr[0]
+            del arr[0]
+
+            items_greater = []
+            items_lower = []
+            for item in arr:
+                if item > pivot:
+                    items_greater.append(item)
+                else:
+                    items_lower.append(item)
+
+            return sor.quicksort(items_lower) + [pivot] + sor.quicksort(items_greater)
+
+
+
+
+arr = [4,3,2,1,-5,-89,10]
+n = len(arr)
+sor = Sorting(arr)
+print(sor.quicksort())
+
+
+
+
+# arr = [4,3,2,1,-5,-89]
+# # arr = [-89, -5, 1, 2, 3, 4]
+# print(Sorting.quicksort(arr))
+
+
+# def partition(arr, low, high):
+#     pivot = arr[low]
+#     i = low+1
+#     j = high
+#     while True:
+#         while arr[i] <= pivot:
+#             i += 1
+#         while arr[j] > pivot:
+#             j -= 1
+#
+#         if j < i:
+#             arr[i], arr[j] = arr[j], arr[i]
+#
+#         if i > j:
+#             break
+#
+#     arr[low], arr[j] = arr[j], arr[low]
+#     return j
+#
+#
+# def quicksort(arr, low, high):
+#     if low < high:
+#         partition_index = partition(arr, low, high)
+#         quicksort(arr, low, partition_index - 1)
+#         quicksort(arr, partition_index + 1, high)
+#
+# arr = [4,3,2,1,-5,-89,10]
+# # arr = [-89, -5, 1, 2, 3, 4]
+# n = len(arr)
+# quicksort(arr, 0,(n-1))
+
